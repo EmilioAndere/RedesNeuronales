@@ -14,10 +14,12 @@ namespace RedesNeuronales
 {
     public partial class Form1 : Form
     {
-        List<String> colores = new List<string>{"error", "Verde", "Amarillo", "Naranja", "Rojo", "Rosa", "Azul Fuerte", "Azul Claro" };
+        String path;
+        List<String> colores = new List<string>{"error", "Verde", "Amarillo", "Rojo", "Rosa", "Azul Fuerte", "Azul Claro" };
 
-        public Form1()
+        public Form1(String next)
         {
+            this.path = next;
             InitializeComponent();
         }
 
@@ -36,7 +38,7 @@ namespace RedesNeuronales
 
             textBox3.Text = color.GetPixel(e.X, e.Y).B.ToString();
 
-            PerceptronMultiCapa rna = new PerceptronMultiCapa(@"ejemplo.ppm");
+            PerceptronMultiCapa rna = new PerceptronMultiCapa(path);
 
             double[] x = { color.GetPixel(e.X, e.Y).R, color.GetPixel(e.X, e.Y).G, color.GetPixel(e.X, e.Y).B };
             rna.reconocer(x);
